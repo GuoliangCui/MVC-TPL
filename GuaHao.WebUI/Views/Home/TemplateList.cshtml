@@ -1,0 +1,156 @@
+﻿@{
+    ViewData["Title"] = "选择模版";
+}
+<div id="app">
+
+    <div class="page__hd">
+        <h1 class="page__title">
+            GuoHao.WebUI
+        </h1>
+        <p class="page__desc">WeUI 是一套同微信原生视觉体验一致的基础样式库，由微信官方设计团队为微信内网页和微信小程序量身设计，令用户的使用感知更加统一。</p>
+    </div>
+
+    <div class="weui-cells">
+
+        <div class="weui-cells weui-cells_radio">
+            <label class="weui-cell weui-check__label" v-for="item in tplList">
+                <div class="weui-cell__bd">
+                    <p>{{item.name}}</p>
+                </div>
+                <div class="weui-cell__ft">
+                    <input type="radio" class="weui-check" name="radio1" id="x11">
+                    <span class="weui-icon-checked"></span>
+                </div>
+            </label>
+        </div>
+        <div class="weui-cell weui-cell_vcode">
+            <div class="weui-cell__hd">
+                <label class="weui-label">验证码</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="tel" pattern="[0-9]*" v-model="checkCode" placeholder="请输入验证码">
+            </div>
+            <div class="weui-cell__ft">
+                <button class="weui-vcode-btn" v-on:click="getCheckCode">获取验证码</button>
+            </div>
+        </div>
+        <div>
+            当前时间：{{dtNow}}
+        </div>
+        <div class="login-btn-container">
+            <a href="javascript:;" v-on:click="saveGuaHao" class="weui-btn weui-btn_primary">提交等待挂号</a>
+        </div>
+
+    </div>
+
+
+
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            tplStr: '@Html.Raw(ViewBag.templateData)',
+            tplList: [],
+            checkCode: '',
+            dtNow:''
+        },
+        mounted: function () {
+            var tplArr = this.tplStr.split('#');
+            for (var i = 0; i < tplArr.length; i++) {
+                var id = tplArr[i].split(',')[1];
+                var name = tplArr[i].split(',')[0];
+                this.tplList.push({ id:id, name:name});
+            }
+        },
+        methods: {
+            getHospitalList: function () {
+                var that = this;
+                $.ajax({
+                    url: '/Home/HostpitalList',
+                    type: 'post',
+                    success: function (res) {
+                        if (res.code == 0) {
+                            that.hosList = JSON.parse(res.data).data;
+
+                            console.log(JSON.parse(res.data).data);
+                        }
+                    }
+                })
+            },
+            getCheckCode: function () {
+                var that = this;
+                $.ajax({
+                    url: '/Home/GetCheckCode',
+                    type: 'post',
+                    success: function (res) {
+                        if (res.code == 200) {
+                            alert('发送成功')
+                        } else {
+
+                            alert('发送失败')
+                        }
+                    }
+                })
+            },
+            saveGuaHao: function () {
+                var that = this;
+                $.ajax({
+                    url: '/Home/SaveGuaHao',
+                    type: 'post',
+                    data: { code: that.checkCode },
+                    success: function (res) {
+                        if (res.code == 0) {
+
+                            var dtOrderArr = that.tplList[0].name.split('/');
+                            var dtOrder = dtOrderArr[2] + ' ' + dtOrderArr[5];
+                            var dtNowObj = null;
+                            setInterval(function () {
+                                dtNowObj = new Date();
+                                that.dtNow = that.formateDate(dtNowObj);
+                                if (dtOrder == that.dtNow) {
+                                    console.log("到日子了！");
+                                    that.goGuaHao();
+                                } else { 
+                                    console.log("还没到日子呢！");
+
+                                }
+                            },1000)
+                        } else { 
+
+
+                        }
+                    }
+                })
+            },
+
+            goGuaHao: function () {
+                var that = this;
+                $.ajax({
+                    url: '/Home/GoGuaHao',
+                    type: 'post',
+                    success: function (res) {
+
+                        console.log("挂号结果。" + res);
+                        alert(res.msg);
+                        //if (res.code == 0) {
+                        //} else {
+
+
+                        //}
+                    }
+                })
+            },
+
+            formateDate: function (dt) {
+                var year = dt.getFullYear();
+                var month = ('0' + (dt.getMonth() + 1)).substr(-2);
+                var date = ('0' + dt.getDate()).substr(-2);
+                var hour = dt.getHours();
+                var min = dt.getMinutes();
+                return year + "-" + month + "-" + date + " " + hour+":"+min;
+            }
+        }
+    })
+    
+</script>

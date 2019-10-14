@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div id="app">
+  
+        <div class="page__hd">
+            <h1 class="page__title">
+                GuoHao.WebUI
+            </h1>
+            <p class="page__desc">WeUI 是一套同微信原生视觉体验一致的基础样式库，由微信官方设计团队为微信内网页和微信小程序量身设计，令用户的使用感知更加统一。</p>
+        </div>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">账号</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" v-model="userName" placeholder="请输入挂号网站账号">
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">密码</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="password" v-model="password" placeholder="请输入挂号网站密码">
+                </div>
+            </div>
+            <div class="login-btn-container">
+                <a href="javascript:;" v-on:click="login" class="weui-btn weui-btn_primary">登录</a>
+            </div>
+        </div>
+ 
+  
+
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            userName: '15201109561',
+            password: '962254xx',
+            //userName: '18514203536',
+            //password: 'guoliang8891'
+        },
+        methods: {
+            login: function () {
+                var that = this;
+                $.ajax({
+                    url: '/Home/Login',
+                    type: 'post',
+                    data: { uname: that.userName, upwd: that.password },
+                    success: function (res) {
+                        if (res.code == 0) {
+                            window.location.href="/Home/TemplateList"
+                        }
+                    }
+                })
+            }
+
+        }
+    })
+    
+  
+</script>
