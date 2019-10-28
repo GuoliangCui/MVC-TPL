@@ -1,9 +1,0 @@
-E:\Yesway\Liang\Test\VSTest\Liang.Projects\GuaHao.Common\bin\Debug\netcoreapp2.0\GuaHao.Common.deps.json
-E:\Yesway\Liang\Test\VSTest\Liang.Projects\GuaHao.Common\bin\Debug\netcoreapp2.0\GuaHao.Common.dll
-E:\Yesway\Liang\Test\VSTest\Liang.Projects\GuaHao.Common\obj\Debug\netcoreapp2.0\GuaHao.Common.csproj.CoreCompileInputs.cache
-E:\Yesway\Liang\Test\VSTest\Liang.Projects\GuaHao.Common\obj\Debug\netcoreapp2.0\GuaHao.Common.AssemblyInfoInputs.cache
-E:\Yesway\Liang\Test\VSTest\Liang.Projects\GuaHao.Common\obj\Debug\netcoreapp2.0\GuaHao.Common.AssemblyInfo.cs
-E:\Yesway\Liang\Test\VSTest\Liang.Projects\GuaHao.Common\bin\Debug\netcoreapp2.0\GuaHao.Common.pdb
-E:\Yesway\Liang\Test\VSTest\Liang.Projects\GuaHao.Common\obj\Debug\netcoreapp2.0\GuaHao.Common.dll
-E:\Yesway\Liang\Test\VSTest\Liang.Projects\GuaHao.Common\obj\Debug\netcoreapp2.0\GuaHao.Common.pdb
-E:\Yesway\Liang\Test\VSTest\Liang.Projects\GuaHao.Common\obj\Debug\netcoreapp2.0\GuaHao.Common.csprojResolveAssemblyReference.cache
