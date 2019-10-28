@@ -1,0 +1,104 @@
+﻿//-----------------------------------------------------------------------
+// <copyright file="DAL.cs">
+// * Copyright (C) <#= DateTime.Now.Year #> 63354261@qq.com
+// * version : V 1.0
+// * author  : cuiguoliang
+// * FileName: Model.cs
+// * history : Created by T4 <#= DateTime.Now #> 
+// </copyright>
+//-----------------------------------------------------------------------
+
+<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ include file="../Liang.T4/DBHelper.ttinclude" #>
+<#@ output extension=".cs" #>
+/// <summary>
+/// 全部DAL实体类
+/// </summary>
+namespace Liang.DAL
+{
+    using System;
+    using System.Collections.Generic;
+	using Liang.Models;
+	using Liang.Model.Query;
+<#
+	var entities=DBHelper.GetEntitys();
+	foreach (var entity in entities)
+    {
+	  var className=entity.ClassName;
+	  var insertSql=DBHelper.GetSql(entity,"insert");
+	  var updateSql=DBHelper.GetSql(entity,"update");
+#>	
+	#region <#=className#>定义
+    /// <summary>
+    /// <#=className#>数据访问类
+    /// </summary>
+	public partial class <#=className#>DAL : BaseDAL, IDAL<<#=className#>>
+	{ 
+		/// <summary>
+        /// 插入一个<#=className#>对象
+        /// </summary>
+		/// <param name="model">要插入的对象</param>
+        public void Insert(<#=className#> model)
+        {
+			string sql = "INSERT INTO <#=className.ToUpper()#> <#=insertSql#>";
+            base.Execute(sql,model);
+        }
+
+		/// <summary>
+        /// 根据Id删除一个<#=className#>对象
+        /// </summary>
+        /// <param name="id">主键Id</param>
+		public void Delete(long id)
+        {
+             string sql = "DELETE FROM USER WHERE ID=@Id";
+             base.Execute(sql, new { Id = id });
+        }
+
+		/// <summary>
+        /// 更新一个<#=className#>对象
+        /// </summary>
+		/// <param name="model">要更新的对象</param>
+        public void Update(<#=className#> model)
+        {
+            string sql = "UPDATE <#=className.ToUpper()#> SET <#=updateSql#>";
+            base.Execute(sql,model);
+        }
+
+		/// <summary>
+        /// 根据Id获取一个<#=className#>对象
+        /// </summary>
+        /// <param name="id">主键Id</param>
+		 public <#=className#> Get(long id)
+        {
+            string sql = "SELECT * FROM USER WHERE ID=@Id";
+            return base.QueryFirstOrDefault<<#=className#>>(sql, new { Id=id});
+        }
+		/// <summary>
+        /// 根据条件查询<#=className#>列表
+        /// </summary>
+        /// <param name="condition">查询条件</param>
+        public IList<<#=className#>> GetList(Condition condition = null)
+        {
+            string sql = "SELECT * FROM <#=className.ToUpper()#>";
+            return base.QueryByCondition<<#=className#>>(sql, condition);
+        }
+		/// <summary>
+        /// 根据条件分页查询<#=className#>列表
+        /// </summary>
+		/// <param name="pageInfo">分页信息(必填)</param>
+        /// <param name="condition">查询条件</param>
+        public PageData<<#=className#>> GetList(PageInfo pageInfo, Condition condition = null)
+        {
+            string sql = "SELECT * FROM <#=className.ToUpper()#>";
+            return base.QueryByPageCondition<<#=className#>>(sql,pageInfo,condition);
+        }
+	}
+	#endregion
+<#
+    }
+#>
+}

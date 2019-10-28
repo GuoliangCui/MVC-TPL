@@ -1,0 +1,51 @@
+﻿//-----------------------------------------------------------------------
+// <copyright file="Models.cs">
+// * Copyright (C) <#= DateTime.Now.Year #> 63354261@qq.com
+// * version : V 1.0
+// * author  : cuiguoliang
+// * FileName: Model.cs
+// * history : Created by T4 <#= DateTime.Now #> 
+// </copyright>
+//-----------------------------------------------------------------------
+<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ include file="../Liang.T4/DBHelper.ttinclude" #>
+<#@ output extension=".cs" #>
+/// <summary>
+/// 全部DB实体类
+/// </summary>
+namespace Liang.Models
+{
+	using System;
+<#
+	var entities=DBHelper.GetEntitys("dgcapplyvehicledb");
+	foreach (var entity in entities)
+    {
+	var className=entity.ClassName;
+#>	
+	#region <#=className#>定义
+	/// <summary>
+    /// <#=className#>数据访问类
+    /// </summary>
+	public partial class <#=entity.ClassName#>
+	{
+<#		
+		foreach(var prop in entity.PropInfos)
+		{
+#>
+		/// <summary>
+		/// <#=prop.Comment==""?prop.PropName:prop.Comment#>
+		/// </summary>
+		public <#=prop.TypeName#><#=prop.IsNull?"?":""#> <#=prop.PropName#> { get; set; }
+<#
+		}
+#>
+	}
+	#endregion
+<#
+    }
+#>
+}
