@@ -6,7 +6,7 @@
 <#+
     public class DBHelper
     {
-        private static string sqlConnStr = "server=10.1.11.126;port=3306;uid=manager;password=nidemima;character set=utf8mb4;";
+        private static string sqlConnStr = "server=10.1.11.126;port=3306;uid=manager;password=Asdf1234;character set=utf8mb4;";
         private static string entitySql = @"select Col.TABLE_NAME as ClassName,
                                                   Col.COLUMN_NAME as PropName,
                                                   Col.DATA_TYPE as TypeName,
