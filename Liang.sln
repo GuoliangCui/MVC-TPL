@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Liang.Model", "Liang.Model\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Liang.BLL", "Liang.BLL\Liang.BLL.csproj", "{6C178D60-3464-4DE2-AB97-54765FD04250}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liang.Test", "Liang.Test\Liang.Test.csproj", "{96F54283-AC0F-491D-8209-9FDEA232F6AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Liang.Test", "Liang.Test\Liang.Test.csproj", "{96F54283-AC0F-491D-8209-9FDEA232F6AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liang.T4", "Liang.T4\Liang.T4.csproj", "{682667CD-8A5A-4B03-B0DD-B26F0DC4F1F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Liang.T4", "Liang.T4\Liang.T4.csproj", "{682667CD-8A5A-4B03-B0DD-B26F0DC4F1F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liang.Tools", "Liang.Tools\Liang.Tools.csproj", "{64281DCA-6175-40E7-B47D-EE58AD5B3A8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{682667CD-8A5A-4B03-B0DD-B26F0DC4F1F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{682667CD-8A5A-4B03-B0DD-B26F0DC4F1F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{682667CD-8A5A-4B03-B0DD-B26F0DC4F1F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64281DCA-6175-40E7-B47D-EE58AD5B3A8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64281DCA-6175-40E7-B47D-EE58AD5B3A8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64281DCA-6175-40E7-B47D-EE58AD5B3A8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64281DCA-6175-40E7-B47D-EE58AD5B3A8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

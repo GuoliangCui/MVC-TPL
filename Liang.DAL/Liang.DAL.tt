@@ -3,7 +3,7 @@
 // * Copyright (C) <#= DateTime.Now.Year #> 63354261@qq.com
 // * version : V 1.0
 // * author  : cuiguoliang
-// * FileName: Model.cs
+// * FileName: DAL.cs
 // * history : Created by T4 <#= DateTime.Now #> 
 // </copyright>
 //-----------------------------------------------------------------------

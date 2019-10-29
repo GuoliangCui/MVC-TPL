@@ -3,8 +3,8 @@
 // * Copyright (C) 2019 63354261@qq.com
 // * version : V 1.0
 // * author  : cuiguoliang
-// * FileName: Model.cs
-// * history : Created by T4 10/28/2019 15:07:24 
+// * FileName: DAL.cs
+// * history : Created by T4 10/28/2019 15:36:20 
 // </copyright>
 //-----------------------------------------------------------------------
 

@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Liang.BLL\Liang.BLL.csproj" />
+    <ProjectReference Include="..\Liang.Tools\Liang.Tools.csproj" />
   </ItemGroup>
 
 </Project>
