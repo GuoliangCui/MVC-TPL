@@ -7,16 +7,16 @@ namespace Liang.Tools
     /// <summary>
     /// 雪花算法Id生成器
     /// </summary>
-    public class IdBuilder
+    public sealed class IdBuilder
     {
         //0 - 0000000000 0000000000 0000000000 0000000000 0 - 00000 - 00000 - 000000000000
         // \                                               /  \            /  \          /
         //  -----------   41位时间戳 可存69.7年   ---------    -中心机器Id-    --顺序号--
-
+        #region 变量
         private const int TIME_LEFT = 22;
         private const int DATACENTERID_LEFT = 17;
         private const int WORKID_LEFT = 12;
-        private const long MAX_SEQUENCE =-1L ^ -1L<< 12;
+        private const long MAX_SEQUENCE = -1L ^ -1L << 12;
         private const long MAX_WCID = -1L ^ -1L << 5;
 
         private static long PrevTimeStamp = 0L;//上一个时间戳
@@ -29,7 +29,13 @@ namespace Liang.Tools
 
         private static IdBuilder idBuilder = null;
         private static object instanceRoot = new object();
-
+        #endregion
+        /// <summary>
+        /// 获取Id生成器实例
+        /// </summary>
+        /// <param name="centerId"></param>
+        /// <param name="workId"></param>
+        /// <returns></returns>
         public static IdBuilder GetInstance(long centerId=0,long workId=0)
         {
             if (idBuilder==null)
@@ -41,7 +47,6 @@ namespace Liang.Tools
                         idBuilder = new IdBuilder(centerId,workId);
                     }
                 }
-              
             }
             return idBuilder;
         }
@@ -51,7 +56,7 @@ namespace Liang.Tools
         /// </summary>
         /// <param name="centerId">数据中心Id(默认0)</param>
         /// <param name="workId">机器Id(默认0)</param>
-        public IdBuilder(long centerId, long workId)
+        private IdBuilder(long centerId, long workId)
         {
             if (centerId> MAX_WCID)
             {
