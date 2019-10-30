@@ -1,4 +1,4 @@
-# MVC-TPL base T4
+# MVC-TPL base T4+Dapper
 
 ## 基于T4模板的 MVC 模板程序
 ### 用PD或者其他工具生成sql脚本
