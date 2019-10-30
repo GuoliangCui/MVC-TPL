@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,6 +19,20 @@ namespace Liang.Test
         //static ConcurrentQueue<long> idSet = new ConcurrentQueue<long>();
         static void Main(string[] args)
         {
+
+            Logger logger = new Logger("测试");
+            try
+            {
+               
+                File.Open("",FileMode.Open);
+            }
+            catch (Exception ex)
+            {
+                
+                Logger.Default.Error("sdfssdf",ex);
+            }
+
+
             // QPSTest();//344.8w/s
             //TestRepeat();//并没发现
 
